@@ -12,6 +12,7 @@ public class Hand : MonoBehaviour {
     GameObject heldObject;
     Controller controller;
     public Palm palm;
+    public Rigidbody ball;
 
     public AudioSource letgo;
 
@@ -23,6 +24,17 @@ public class Hand : MonoBehaviour {
     public bool gripButtonDown = false;
     public bool gripButtonUp = false;
     public bool gripButtonPressed = false;
+
+    private Valve.VR.EVRButtonId Menu = Valve.VR.EVRButtonId.k_EButton_ApplicationMenu;
+    public bool MenuDown = false;
+    public bool MenuUp = false;
+    public bool MenuPressed = false;
+
+    private Valve.VR.EVRButtonId Touchpad = Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad;
+    public bool TouchpadDown = false;
+    public bool TouchpadUp = false;
+    public bool TouchpadPressed = false;
+
 
     private Valve.VR.EVRButtonId triggerbutton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
     public bool triggerButtonDown = false;
@@ -86,8 +98,36 @@ public class Hand : MonoBehaviour {
         triggerButtonDown = controller.controller.GetPressDown(triggerbutton);
         triggerButtonUp = controller.controller.GetPressUp(triggerbutton);
         triggerButtonPressed = controller.controller.GetPress(triggerbutton);
-        Debug.Log(palm.gameObject.activeSelf);
-        
+
+        TouchpadDown = controller.controller.GetPressDown(Touchpad);
+        TouchpadUp = controller.controller.GetPressUp(Touchpad);
+        TouchpadPressed = controller.controller.GetPress(Touchpad);
+
+
+        MenuDown = controller.controller.GetPressDown(Menu);
+        MenuUp = controller.controller.GetPressUp(Menu);
+        MenuPressed = controller.controller.GetPress(Menu);
+  
+
+        var Touchpadx = controller.controller.GetAxis(Touchpad).x;
+        var Touchpady = controller.controller.GetAxis(Touchpad).y;
+
+        Debug.Log("TouchpadDown" + TouchpadDown);
+        Debug.Log("TouchpadUp" + TouchpadUp);
+        Debug.Log("TouchpadPressed" + TouchpadPressed);
+
+        Debug.Log("MenuDown" + MenuDown);
+        Debug.Log("MenuUp" + MenuUp);
+        Debug.Log("MenuPressed" + MenuPressed);
+
+        //Debug.Log("Touchpadx" + Touchpadx);
+        //Debug.Log("Touchpady" + Touchpady);
+
+        if (MenuDown)
+        {
+
+        }
+
         if (gripButtonDown)
         {
             if(palm.gameObject.activeSelf == true)
