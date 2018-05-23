@@ -34,7 +34,7 @@ public class Palm : MonoBehaviour {
 
 
             //Drop held object
-           // Destroy(gameObject.GetComponent<FixedJoint>());
+            Destroy(gameObject.GetComponent<FixedJoint>());
             col.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
 
